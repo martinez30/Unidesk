@@ -1,0 +1,18 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Application/bin/Debug/netcoreapp3.1
+/Application/obj
+/Domain/bin/Debug/netcoreapp3.1
+/Domain/obj
+/Infra/bin/Debug/netcoreapp3.1
+/Infra/obj
+/Repository/bin/Debug/netcoreapp3.1
+/Repository/obj
+/Unidesk/bin/Debug/netcoreapp3.1
+/Unidesk/obj
+*.pdf
+/Unidesk/UpgradeLog.htm
+/Unidesk/UpgradeLog2.htm
+/Unidesk/UpgradeLog3.htm

@@ -1,0 +1,61 @@
+﻿@model Application.Model.OrderModel
+
+@{
+    ViewData["Title"] = "Ordem " + Model.Order.Id;
+}
+
+<div class="pt-5">
+    <div class="comment-form-wrap pt-5">
+        <h4 class="mb-5">Informações de edição</h4>
+        <form asp-action="Register" asp-controller="Order">
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="Order.Name">Nome </label>
+                    <input asp-for="Order.Name" readonly class="form-control  bg-dark">
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Order.InitialDate" class=" control-label">Data de Abertura</label>
+                    <input asp-for="Order.InitialDate" readonly class="form-control bg-dark" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="Order.ProblemName">Problema Apresentado</label>
+                    <input asp-for="Order.ProblemName" readonly class="form-control bg-dark" />
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Order.StatusName" class="control-label">Status</label>
+                    <input asp-for="Order.StatusName" class="form-control bg-dark" readonly />
+                </div>
+            </div>
+            @if (Model.Order.RequestDescription != null)
+            {
+                <div class="form-group">
+                    <label asp-for="Order.RequestDescription">Informações Adicionais</label>
+                    <input asp-for="Order.RequestDescription" readonly class="form-control bg-dark">
+                </div>
+            }
+            @if(Model.ResponseDescription != null)
+            {
+                <div class="form-group">
+                    <label asp-for="ResponseDescription" class="control-label">Informações de fechamento</label>
+                    <input asp-for="ResponseDescription" class="form-control bg-dark" readonly />
+                </div>
+            }
+            @if (Model.Proviced_Services != null && Model.Proviced_Services.Count > 0)
+            {
+                foreach (var item in Model.Proviced_Services)
+                {
+                    <div class="form-group">
+                        <label class="control-label">Informações de fechamento</label>
+                        <input class="form-control bg-dark" readonly value="@item" />
+                    </div>
+                }
+            }
+            <div class="form-group">
+                <button asp-action="Index" asp-controller="Order" class="btn btn-outline-info">Voltar</button>
+            </div>
+
+        </form>
+    </div>
+</div>

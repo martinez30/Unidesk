@@ -1,0 +1,40 @@
+﻿@model Application.Model.OrderModel
+
+@{
+    ViewData["Title"] = "Ordem " + Model.Order.Id;
+}
+
+<div class="pt-5">
+    <div class="comment-form-wrap pt-5">
+        <h4 class="mb-5">Edite o valores que for necessário</h4>
+        <form asp-action="Edit" asp-controller="Order">
+            <input type="hidden" asp-for="Order.Id" />
+            <div class="form-group">
+                <label asp-for="Order.Name">Nome</label>
+                <input asp-for="Order.Name" type="text" class="form-control">
+                <span class="text-danger" asp-validation-for="Order.Name"></span>
+            </div>
+            <div class="row">
+                <div class="form-group col-5">
+                    <label for="message">Problema Apresentado </label>
+                    <select asp-for="Order.Problem" class="form-control" asp-items="ViewBag.Problems">
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+                <div class="form-group col-7">
+                    <label asp-for="Order.RequestDescription">Informações Adicionais (opcional)</label>
+                    <input asp-for="Order.RequestDescription" type="text" class="form-control">
+                    <span class="text-danger" asp-validation-for="Order.RequestDescription"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <input type="submit" value="Editar" class="btn btn-outline-primary btn-md ">
+                </div>
+                <div class="form-group ml-3">
+                    <button asp-action="Index" asp-controller="Order" class="btn btn-outline-danger btn-md ">Voltar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

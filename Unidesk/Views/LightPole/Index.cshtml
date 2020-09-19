@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Application.Model.LightPoleModel>
+
+@{
+    ViewData["Title"] = "Postes Instalados"; 
+}
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Localização</th>
+            <th scope="col">Numero</th>
+            <th scope="col">Código de Série</th>
+            <th scope="col">Ativo</th>
+            <th scope="col">Funções</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model.OrderBy(x=> x.Localization).ThenBy(x=> x.NumberHouse))
+            {
+                <tr>
+                    <th scope="row">@item.Localization</th>
+                    <td>@item.NumberHouse</td>
+                    <td>@item.SerialNumber</td>
+                    @if (item.Active)
+                    {
+                        <td>Ativo</td>
+                    }
+                    else
+                    {
+                        <td>Desativo</td>
+                    }
+                    <td><a asp-action="Edit" asp-controller="LightPole" asp-route-id="@item.Id" title="Editar"><img width="15" src="~/images/edit.png" /></a>
+                        <a asp-action="Register" asp-controller="Order" asp-route-id="@item.Id" title="Criar Ordem"><img width="15" src="~/images/plus.png" /></a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<button class="btn btn-outline-secondary"><a asp-action="Index" asp-controller="Home">Voltar ao menu Principal</a></button>

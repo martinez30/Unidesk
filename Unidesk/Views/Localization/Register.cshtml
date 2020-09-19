@@ -1,0 +1,42 @@
+﻿@model Application.Model.LocalizationModel
+
+@{
+    ViewData["Title"] = "Nova Localização";
+}
+
+<div class="pt-5">
+    <div class="comment-form-wrap pt-5">
+        <h4 class="mb-5">Insira as informações da nova localização</h4>
+        <form asp-action="Register" asp-controller="Localization">
+            <div class="form-group">
+                <label asp-for="Address">Endereço <span class="text-danger">*</span></label>
+                <input asp-for="Address" type="text" class="form-control">
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Neighborhood">Bairro<span class="text-danger">*</span></label>
+                <input asp-for="Neighborhood" type="text" class="form-control">
+                <span asp-validation-for="Neighborhood" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="City">Cidade <span class="text-danger">*</span></label>
+                    <input asp-for="City" type="text" class="form-control">
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="State">Estado <span class="text-danger">*</span></label>
+                    <select asp-for="State" class="form-control" asp-items="ViewBag.States">
+                        <option value="">Selecione</option>
+                    </select>
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-outline-success">
+                <button class=" btn btn-outline-warning ml-2" asp-action="Index" asp-controller="Home">Voltar</button>
+            </div>
+
+        </form>
+    </div>
+</div>

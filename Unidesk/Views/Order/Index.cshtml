@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Application.Model.OrderModel>
+
+@{
+    ViewData["Title"] = "Localizações cadastradas";
+}
+
+
+<table class="table table-hover pt-3">
+    <thead>
+        <tr>
+            <th scope="col">Código da Ordem</th>
+            <th scope="col">Nome do Reclamante</th>
+            <th scope="col">Código do Poste de Luz</th>
+            <th scope="col">Status</th>
+            <th scope="col">Funcões</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model.OrderBy(x=> x.Order.StatusName))
+            {
+                <tr>
+                    <th scope="row">@item.Order.Id</th>
+                    <td>@item.Order.Name</td>
+                    <td>@item.Order.LightPoleId</td>
+                    <td>@item.Order.StatusName</td>
+                    <td><a asp-action="Edit" asp-controller="Order" asp-route-id="@item.Order.Id" title="Editar"><img width="15" src="~/images/edit.png" /></a>
+                        <a asp-action="Details" asp-controller="Order" asp-route-id="@item.Order.Id" title="Detalhes"><img width="15" src="~/images/details.png" /></a>
+                        @if (item.Order.Status == Domain.StatusOrder.Open)
+                        {
+                            <a asp-action="Finish" asp-controller="Order" asp-route-id="@item.Order.Id" title="Finalizar"><img width="15" src="~/images/finish.png" /></a>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<a class="btn btn-outline-secondary" asp-action="Index" asp-controller="Home">Voltar ao menu Principal</a>

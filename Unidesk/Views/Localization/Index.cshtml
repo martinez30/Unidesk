@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Application.Model.LocalizationModel>
+
+@{
+    ViewData["Title"] = "Localizações cadastradas";
+}
+
+<h5><a asp-action="Register" asp-controller="Localization">Nova Localização</a></h5>
+
+
+<div class="container">
+
+    <table class="table table-hover pt-3">
+        <thead>
+            <tr>
+                <th scope="col">Código Localização</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Bairro</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Funções</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.Address</td>
+                        <td>@item.Neighborhood</td>
+                        <td>@item.City</td>
+                        <td>@item.StateName</td>
+                        <td><a asp-action="Register" asp-controller="LightPole" asp-route-id="@item.Id" title="Instalar poste"><img width="15" src="~/images/plus.png" /></a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <button class="btn btn-outline-secondary"><a asp-action="Index" asp-controller="Home">Voltar ao menu Principal</a></button>
+</div>

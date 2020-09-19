@@ -1,0 +1,42 @@
+﻿@model Application.Model.LightPoleModel
+
+@{
+    ViewData["Title"] = "Novo poste de luz";
+}
+
+<div class="pt-5 container-fluid">
+    <div class="comment-form-wrap pt-5">
+        <form asp-action="Register" asp-controller="LightPole" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" hidden />
+            <input asp-for="LocId" hidden value="@ViewBag.LocId"/>
+            <div class="form-group">
+                <label asp-for="Localization" class="control-label">Endereço</label>
+                <input asp-for="Localization" readonly class="form-control bg-dark" value=@ViewBag.Localization>
+                <span asp-validation-for="Localization" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label asp-for="SerialNumber" class="control-label">Código de série</label>
+                    <input asp-for="SerialNumber" type="number" class="form-control">
+                    <span asp-validation-for="SerialNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="NumberHouse" class="control-label">Numero da casa</label>
+                    <input asp-for="NumberHouse" type="number" class="form-control">
+                    <span asp-validation-for="NumberHouse" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label asp-for="Active" class="control-label">Poste</label>
+                    <select asp-for="Active" class="form-control">
+                        <option value="true">Ativo</option>
+                        <option value="false">Desativo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-primary btn-md text-white">
+            </div>
+        </form>
+    </div>
+</div>

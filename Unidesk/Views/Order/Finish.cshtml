@@ -1,0 +1,55 @@
+﻿@model Application.Model.OrderModel
+
+@{
+    ViewData["Title"] = "Finalizar Ordem de Serviço";
+}
+
+<div class="pt-5">
+    <div class="comment-form-wrap pt-5">
+        <h4 class="mb-5">Adicione as informações de finalização de serviço</h4>
+        <form asp-action="Finish" asp-controller="Order">
+            <input type="hidden" asp-for="Order.Id" />
+            <div class="form-group">
+                <label class="control-label">Localização</label>
+                <input value="@ViewBag.Localization" class="form-control bg-dark" readonly />
+            </div>
+            <div class="row">
+                <div class="form-group col-5">
+                    <label asp-for="Order.ProblemName" class="control-label">Problema Apresentado </label>
+                    <input class="form-control bg-dark" readonly asp-for="Order.ProblemName" />
+                </div>
+                <div class="form-group col-7">
+                    <label asp-for="ResponseDescription">Informações de Finalização (opcional)</label>
+                    <input asp-for="ResponseDescription" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Proviced_Services">Serviço Prestado<span class="text-danger">*</span><img src="~/images/plus.png" title="Adicionar novo campo" width="15" id="img-plus"></label>
+                <input asp-for="Proviced_Services" value="" class="form-control" />
+                <span asp-validation-for="Proviced_Services" class="text-danger"></span>
+            </div>
+            <div class="div-plus form-group" hidden>
+                <label asp-for="Proviced_Services">Serviço Prestado</label>
+                <input asp-for="Proviced_Services" value="" class="form-control" />
+                <span asp-validation-for="Proviced_Services" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <input type="submit" value="Finalizar" class="btn btn-outline-primary btn-md ">
+                </div>
+                <div class="form-group ml-3">
+                    <button asp-action="Index" asp-controller="Order" class="btn btn-outline-danger btn-md ">Voltar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $("#img-plus").click(function () {
+            $(".div-plus").removeAttr("hidden");
+            $(".div-plus").addClass(".show");
+        });
+    </script>
+}

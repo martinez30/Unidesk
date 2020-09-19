@@ -1,0 +1,38 @@
+﻿@model Application.Model.LightPoleModel
+
+@{
+    ViewData["Title"] = "Poste " + Model.Id;
+}
+
+<div class="pt-5">
+    <div class="comment-form-wrap pt-5">
+        <form asp-action="Edit" asp-controller="LightPole">
+            <input asp-for="Id" type="hidden" />
+            <div class="form-group">
+                <label asp-for="Localization" class="control-label">Localização</label>
+                <input asp-for="Localization"readonly class="form-control bg-dark">
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label asp-for="NumberHouse" class="control-label">Numero da casa</label>
+                    <input asp-for="NumberHouse" type="number" class="form-control">
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="Active" class="control-label">Status</label>
+                    <select asp-for="Active" class="form-control">
+                        <option value="true">Ativo</option>
+                        <option value="false">Desativo</option>
+                    </select>
+                </div>
+                <div class="form-group col-4">
+                    <label asp-for="SerialNumber" class="control-label">Numero da casa</label>
+                    <input asp-for="SerialNumber" value="@Model.SerialNumber" type="number" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Alterar" class="btn btn-outline-primary btn-md text-white">
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿@model Application.Model.CreateOrderModel
+
+@{
+    ViewData["Title"] = "Nova Ordem de Serviço";
+}
+
+<div class="pt-5">
+    <div class="comment-form-wrap pt-5">
+        <h4 class="mb-5">Insira as informações para abrir uma ordem de serviço</h4>
+        <form asp-action="Register" asp-controller="Order">
+            <input asp-for="Id" hidden />
+            <input asp-for="LightPoleId" value="@ViewBag.LightPoleId" hidden />
+            <div class="form-group">
+                <label class="control-label">Localização</label>
+                <input readonly class="form-control bg-dark" value="@ViewBag.Localization" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name">Nome <span class="text-danger">*</span></label>
+                <input asp-for="Name" type="text" class="form-control">
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label class="control-label" asp-for="InitialDate">Data de início</label>
+                    <input class="form-control" asp-for="InitialDate" type="date" />
+                </div>
+                <div class="form-group col-5">
+                    <label for="message">Problema Apresentado <span class="text-danger">*</span></label>
+                    <select asp-for="Problem" class="form-control" asp-items="ViewBag.Problems">
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+                <div class="form-group col-3">
+                    <label class="control-label">Numero de Serie</label>
+                    <input class="form-control bg-dark" readonly value="@ViewBag.SerialNumber"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RequestDescription">Informações Adicionais (opcional)</label>
+                <input asp-for="RequestDescription" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Abrir Ordem" class="btn btn-primary btn-md text-white">
+            </div>
+        </form>
+    </div>
+</div>
